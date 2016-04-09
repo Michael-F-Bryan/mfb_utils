@@ -12,7 +12,10 @@ def factorial(number):
         raise ValueError('number must be an integer.')
 
     if number > 1:
-        return factorial(number)
+        total = 1
+        for i in range(2, number + 1):
+            total *= i
+        return total
     elif number == 0 or number == 1:
         return 1
     else:

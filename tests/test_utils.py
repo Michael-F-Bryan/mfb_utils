@@ -10,7 +10,7 @@ To Do
 import sys
 from unittest import mock
 import pytest
-from utils import Hook, flatten
+from utils.misc import Hook, flatten
 
 
 def test_hook_method_no_args():
