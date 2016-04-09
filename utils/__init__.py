@@ -9,6 +9,23 @@ import inspect
 from bs4 import BeautifulSoup
 
 
+# Constants
+# =========
+
+USER_AGENTS = [
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.73 Safari/537.36 OPR/34.0.2036.25',
+    'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; FSL 7.0.6.01001)',
+    'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:12.0) Gecko/20100101 Firefox/12.0',
+    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36',
+    'Mozilla/5.0 (Windows NT 5.1; rv:13.0) Gecko/20100101 Firefox/13.0.1',
+    'Opera/9.80 (Windows NT 5.1; U; en) Presto/2.10.289 Version/12.01',
+]
+"""
+A bunch of random User-Agent strings to help trick Travian into not thinking
+we're using a bot.
+"""
+
+
 # Decorators
 # ==========
 
