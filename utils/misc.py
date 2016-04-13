@@ -4,9 +4,11 @@ whatever.
 """
 
 from collections import namedtuple, Iterable
+import sys
 import functools
 import inspect
 from bs4 import BeautifulSoup
+import logging
 
 
 # Constants
@@ -103,7 +105,7 @@ class Hook:
 # Functions
 # =========
 
-def get_logger(name, log_file):
+def get_logger(name, log_file, log_level=None):
     """
     Get a logger object which is set up properly with the correct formatting,
     logfile, etc.
@@ -121,20 +123,21 @@ def get_logger(name, log_file):
         A logging.Logger object that can be used to log to a common file.
     """
     logger = logging.getLogger(name)
-    logger.setLevel(logging.INFO)
+    logger.setLevel(log_level or logging.INFO)
 
     if log_file == 'stdout':
         handler = logging.StreamHandler(sys.stdout)
     else:
         handler = logging.FileHandler(log_file)
 
-    formatter = logging.Formatter(
-        '%(asctime)s - %(name)-20s - %(levelname)s: %(message)s',
-        datefmt='%Y/%m/%d %I:%M:%S %p'
-    )
-    handler.setFormatter(formatter)
+    if not len(logger.handlers):
+        formatter = logging.Formatter(
+            '%(asctime)s - %(name)s - %(levelname)s: %(message)s',
+            datefmt='%Y/%m/%d %I:%M:%S %p'
+        )
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
 
-    logger.addHandler(handler)
     return logger
 
 
