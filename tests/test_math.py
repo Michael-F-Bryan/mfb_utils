@@ -12,7 +12,6 @@ def test_average_valid_input_random():
 
     numbers = [random.random()*10 for i in range(10)]
     should_be = sum(numbers)/len(numbers)
-    print(numbers)
 
     assert should_be == math.average(numbers)
 

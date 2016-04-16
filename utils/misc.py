@@ -62,7 +62,7 @@ class Hook:
     ValueError
         When a normal function is decorated instead of a method.
     """
-    def __init__(self, hook_name, *, call_after=True, 
+    def __init__(self, hook_name, call_after=True, 
             skip_exceptions=True, **hook_kwargs):
         self.hook_name = hook_name
         self.hook_kwargs = hook_kwargs

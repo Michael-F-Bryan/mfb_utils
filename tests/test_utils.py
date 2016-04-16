@@ -13,8 +13,8 @@ import pytest
 from utils.misc import Hook, flatten
 
 
-def test_hook_method_no_args():
-    # Create our hook dummy
+@pytest.fixture
+def hook_dummy(request):
     class HookDummy:
         def __init__(self):
             self.call_log = []
@@ -26,27 +26,21 @@ def test_hook_method_no_args():
         def my_special_hook(self):
             self.call_log.append('ran my_special_hook')
 
-    # Instantiate HookDummy and start the test
-    hook_dummy = HookDummy()
+    return HookDummy()
+
+
+def test_hook_method_no_args(hook_dummy):
     hook_dummy.do() 
     
     expected_call_log = ['ran do', 'ran my_special_hook'] 
     assert expected_call_log == hook_dummy.call_log
 
 
-def test_hook_method_skip_hook_exception():
-    class HookDummy:
-        def __init__(self):
-            self.call_log = []
+def test_hook_method_skip_hook_exception(hook_dummy):
+    def my_special_hook(self):
+        raise RuntimeError
 
-        @Hook('my_special_hook')
-        def do(self):
-            self.call_log.append('ran do')
-
-        def my_special_hook(self):
-            raise RuntimeError
-
-    hook_dummy = HookDummy()
+    hook_dummy.my_special_hook = my_special_hook
     hook_dummy.do() 
     
     expected_call_log = ['ran do'] 
@@ -54,6 +48,8 @@ def test_hook_method_skip_hook_exception():
 
 
 def test_hook_method_catch_exception():
+    # Can't use the fixture because monkeypatching the do() method doesn't
+    # work properly for some reason
     class HookDummy:
         def __init__(self):
             self.call_log = []
