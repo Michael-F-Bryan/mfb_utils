@@ -34,8 +34,44 @@ def test_hook_method_no_args():
     assert expected_call_log == hook_dummy.call_log
 
 
+def test_hook_method_skip_hook_exception():
+    class HookDummy:
+        def __init__(self):
+            self.call_log = []
+
+        @Hook('my_special_hook')
+        def do(self):
+            self.call_log.append('ran do')
+
+        def my_special_hook(self):
+            raise RuntimeError
+
+    hook_dummy = HookDummy()
+    hook_dummy.do() 
+    
+    expected_call_log = ['ran do'] 
+    assert expected_call_log == hook_dummy.call_log
+
+
+def test_hook_method_catch_exception():
+    class HookDummy:
+        def __init__(self):
+            self.call_log = []
+
+        @Hook('my_special_hook', skip_exceptions=False)
+        def do(self):
+            self.call_log.append('ran do')
+
+        def my_special_hook(self):
+            raise RuntimeError
+
+    hook_dummy = HookDummy()
+    
+    with pytest.raises(RuntimeError):
+        hook_dummy.do() 
+
+
 def test_hook_method_called_before():
-    # Create our hook dummy
     class HookDummy:
         def __init__(self):
             self.call_log = []
@@ -47,7 +83,6 @@ def test_hook_method_called_before():
         def my_special_hook(self):
             self.call_log.append('ran my_special_hook')
 
-    # Instantiate HookDummy and start the test
     hook_dummy = HookDummy()
     hook_dummy.do() 
     
@@ -56,7 +91,6 @@ def test_hook_method_called_before():
 
 
 def test_hook_no_hook_method():
-    # Create our hook dummy
     class HookDummy:
         def __init__(self):
             self.call_log = []
@@ -65,7 +99,6 @@ def test_hook_no_hook_method():
         def do(self):
             self.call_log.append('ran do')
 
-    # Instantiate HookDummy and start the test
     hook_dummy = HookDummy()
     hook_dummy.do() 
     
@@ -74,7 +107,6 @@ def test_hook_no_hook_method():
 
 
 def test_hook_method_with_args_and_kwargs():
-    # Create our hook dummy
     class HookDummy:
         def __init__(self):
             self.call_log = []
@@ -87,7 +119,6 @@ def test_hook_method_with_args_and_kwargs():
             self.call_log.append('ran my_special_hook')
             self.call_log.append(kwargs)
 
-    # Instantiate HookDummy and start the test
     hook_dummy = HookDummy()
     hook_dummy.do()
 

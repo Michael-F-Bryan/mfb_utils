@@ -2,6 +2,7 @@ alabaster==0.7.7
 Babel==2.3.2
 beautifulsoup4==4.4.1
 bs4==0.0.1
+Cython==0.24
 docutils==0.12
 imagesize==0.7.0
 Jinja2==2.8
@@ -15,3 +16,4 @@ six==1.10.0
 snowballstemmer==1.2.1
 Sphinx==1.4
 sphinxcontrib-napoleon==0.5.0
+-e git+git@github-legit:Michael-F-Bryan/mfb_utils.git@430b3f34e756b3b2756c8cf82f03d7dda649a50d#egg=utils

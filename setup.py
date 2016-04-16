@@ -1,4 +1,5 @@
 from setuptools import find_packages, setup
+from Cython.Build import cythonize
 
 
 setup(
@@ -9,4 +10,5 @@ setup(
     long_description=open('README.rst').read(),
     author='Michael F Bryan',
     description='My utility scripts',
+    ext_modules=cythonize('utils/math.pyx'),
 )

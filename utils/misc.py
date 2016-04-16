@@ -62,10 +62,12 @@ class Hook:
     ValueError
         When a normal function is decorated instead of a method.
     """
-    def __init__(self, hook_name, *, call_after=True, **hook_kwargs):
+    def __init__(self, hook_name, *, call_after=True, 
+            skip_exceptions=True, **hook_kwargs):
         self.hook_name = hook_name
         self.hook_kwargs = hook_kwargs
         self.call_after = call_after
+        self.skip_exceptions = skip_exceptions
 
     def __call__(self, func):
         @functools.wraps(func)
@@ -90,6 +92,9 @@ class Hook:
         Uses inspect to check that a function has this "self" variable passed
         in first. This is a sanity check to ensure that the hook decorator is
         only used on methods.
+
+        By default any exceptions encountered while running the hook will be
+        silently ignored.
         """
         func_args = inspect.getargspec(func).args
         if len(func_args) < 1 or 'self' not in func_args:
@@ -99,7 +104,11 @@ class Hook:
         hook = getattr(instance, self.hook_name, None)
 
         if hook:
-            hook(**self.hook_kwargs)
+            try:
+                hook(**self.hook_kwargs)
+            except Exception:
+                if not self.skip_exceptions:
+                    raise 
     
 
 # Functions
