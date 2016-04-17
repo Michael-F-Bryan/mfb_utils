@@ -10,7 +10,7 @@ To Do
 import sys
 from unittest import mock
 import pytest
-from utils.misc import Hook, flatten
+from utils.misc import Hook, flatten, humansize
 
 
 @pytest.fixture
@@ -160,6 +160,42 @@ def test_flatten_only_string_provided():
     expected = ['some string']
     assert temp == expected
     
+
+def test_humansize_12_kbytes():
+    size = 12*1024
+    string = humansize(size)
+    assert string == '12 KB'
+
+def test_humansize_10_point_815_kbytes_2_decimals():
+    size = 10.815*1024
+    string = humansize(size, decimals=2)
+    assert string == '10.81 KB'
+
+def test_humansize_10_point_81_kbytes():
+    size = 10.81*1024
+    string = humansize(size)
+    assert string == '10.81 KB'
+
+def test_humansize_31_mbytes():
+    size = 1024*1024*31
+    string = humansize(size)
+    assert string == '31 MB'
+
+def test_humansize_kbytes():
+    size = 1024
+    string = humansize(size)
+    assert string == '1 KB'
+
+def test_humansize_kbytes():
+    size = 1024*1024
+    string = humansize(size)
+    assert string == '1 MB'
+
+def test_humansize_mbytes():
+    size = 1024*1024*1024
+    string = humansize(size)
+    assert string == '1 GB'
+
 
 if __name__ == "__main__":
     # Including sys.argv means that you can pass in all the normal py.test 

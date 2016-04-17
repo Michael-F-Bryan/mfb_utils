@@ -206,3 +206,36 @@ def hidden_fields(soup):
 
     return hidden
 
+
+_suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
+def humansize(nbytes, decimals=2):
+    """
+    Convert a number of bytes into it's human readable string using SI 
+    suffixes.
+
+    Note
+    ----
+    1 KB = 1024 bytes
+
+    Parameters
+    ----------
+    nbytes: int
+        The total number of bytes
+    decimals: int
+        The number of decimal places to round to
+
+    Returns
+    -------
+    string
+        The human readable size.
+
+    """
+    if nbytes == 0: return '0 B'
+    i = 0
+    while nbytes >= 1024 and i < len(_suffixes)-1:
+        nbytes /= 1024.
+        i += 1
+    f = ('{}'.format(round(nbytes, decimals)))
+    f = f.rstrip('0').rstrip('.')
+    return '%s %s' % (f, _suffixes[i])
+
