@@ -6,6 +6,15 @@ from version import __version__
 
 
 def increment_version():
+    """
+    Increment the minor version number and then write it to the version.py 
+    file.
+
+    Returns
+    -------
+    str
+        The new version number
+    """
     version_info = [int(a) for a in __version__.split('.')]
     version_info[-1] += 1
     new_version = '.'.join(str(a) for a in version_info)

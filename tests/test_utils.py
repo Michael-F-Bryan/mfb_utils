@@ -10,7 +10,9 @@ To Do
 import sys
 from unittest import mock
 import pytest
-from utils.misc import Hook, flatten, humansize
+from utils.misc import Hook, flatten, humansize, Timed
+import time
+from io import StringIO
 
 
 @pytest.fixture
@@ -195,6 +197,88 @@ def test_humansize_mbytes():
     size = 1024*1024*1024
     string = humansize(size)
     assert string == '1 GB'
+
+
+def test_Timed_stderr_message_decimals_is_1():
+    output_stream = StringIO()
+    duration_should_be = 0.1
+    decimals = 1
+    @Timed(output_stream, decimals=decimals)
+    def do_something():
+        time.sleep(duration_should_be)
+
+    do_something()
+
+    duration = round(do_something.duration, decimals)
+    should_be = 'do_something() took {} seconds'.format(duration)
+    assert output_stream.getvalue() == should_be
+
+def test_Timed_stderr_message_decimals_is_negative():
+    output_stream = StringIO()
+    duration_should_be = 0.1
+    decimals = -3
+    @Timed(output_stream, decimals=decimals)
+    def do_something():
+        time.sleep(duration_should_be)
+
+    do_something()
+
+    duration = round(do_something.duration, decimals)
+    should_be = 'do_something() took {} seconds'.format(duration)
+    assert output_stream.getvalue() == should_be
+
+def test_Timed_stderr_message():
+    output_stream = StringIO()
+    duration_should_be = 0.1
+    @Timed(output_stream)
+    def do_something():
+        time.sleep(duration_should_be)
+
+    do_something()
+
+    should_be = 'do_something() took {:.3} seconds'.format(do_something.duration)
+    assert output_stream.getvalue() == should_be
+
+def test_Timed_stderr_message_invalid_decimals():
+    output_stream = StringIO()
+    duration_should_be = 0.1
+
+    with pytest.raises(TypeError):
+        @Timed(output_stream, decimals='hello')
+        def do_something():
+            time.sleep(duration_should_be)
+
+
+def test_Timed_stderr_message_invalid_stream():
+    output_stream = 'boobies'
+    duration_should_be = 0.1
+
+    with pytest.raises(TypeError):
+        @Timed(output_stream, decimals='hello')
+        def do_something():
+            time.sleep(duration_should_be)
+
+def test_Timed_stderr_message():
+    output_stream = StringIO()
+    duration_should_be = 0.1
+    @Timed(output_stream)
+    def do_something():
+        time.sleep(duration_should_be)
+
+    do_something()
+
+    should_be = 'do_something() took {:.3} seconds'.format(do_something.duration)
+    assert output_stream.getvalue() == should_be
+
+def test_Timed_no_stderr():
+    duration_should_be = 0.1
+    @Timed(None)
+    def do_something():
+        time.sleep(duration_should_be)
+
+    do_something()
+
+    assert do_something.duration - duration_should_be < 0.01 
 
 
 if __name__ == "__main__":

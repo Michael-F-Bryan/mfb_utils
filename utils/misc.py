@@ -9,6 +9,7 @@ import functools
 import inspect
 from bs4 import BeautifulSoup
 import logging
+import time
 
 
 # Constants
@@ -38,16 +39,25 @@ class Hook:
     When decorating your method, make sure to only use keyword arguments in
     the hook.
 
+    The idea is for a developer to implement a specific class which has various
+    methods, and on some methods he will add a Hook decorator. Then the user 
+    can create a subclass of this class and implement the hooks themselves.
+
     Example
     -------
+    Developer:
+
     class MyClass:
-        @Hook('on_do_stuff_completed', arg1='something', arg2=7)
+        @Hook('on_do_stuff', arg1='something', arg2=7)
         def do_stuff(self):
             pass
 
-        def on_do_stuff_completed(self, **kwargs):
-            "This is our hook method"
-            pass
+    User:
+    
+    class MyNewClass(MyClass):
+    def on_do_stuff(self, **kwargs):
+        # Do something useful
+        pass
 
     Parameters
     ----------
@@ -110,6 +120,54 @@ class Hook:
                 if not self.skip_exceptions:
                     raise 
     
+
+class Timed:
+    def __init__(self, output_stream=sys.stderr, decimals=3):
+        """
+        Time a function call and save it's duration (in seconds) to 
+        `function.duration`.
+
+        Parameters
+        ----------
+        output_stream: Stream-like object
+            A stream to write the timing message to, set to None to disable it
+            (default: stderr)
+        decimals: int
+            The number of decimal places to print the duration to in the output
+            stream
+        """
+        if output_stream is None or hasattr(output_stream, 'write'):
+            self.output_stream = output_stream
+        else:
+            raise TypeError('output_stream should be a Stream (i.e. has a '
+                            '"write()" method)')
+
+        if not isinstance(decimals, int):
+            raise TypeError('decimals must be an integer')
+        else:
+            self.decimals = decimals
+    
+    def __call__(self, func):
+        @functools.wraps(func)
+        def decorated(*args, **kwargs):
+            start = time.time()
+            ret = func(*args, **kwargs)
+            decorated.duration = time.time() - start
+
+            if self.output_stream:
+                func_args = []
+                func_args.extend(args)
+                func_args.extend('{}={}'.format(key, value) for key, value in kwargs.items())
+                func_arguments = ', '.join(func_args)
+                function_call = '{}({})'.format(func.__name__, func_arguments)
+
+                duration = round(decorated.duration, self.decimals)
+                self.output_stream.write(
+                        '{} took {} seconds'.format(function_call, duration))
+
+            return ret
+        return decorated
+
 
 # Functions
 # =========
