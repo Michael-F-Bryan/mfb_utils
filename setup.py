@@ -8,11 +8,11 @@ from version import __version__
 def increment_version():
     version_info = [int(a) for a in __version__.split('.')]
     version_info[-1] += 1
-    new_version = '.'.join(version_info)
+    new_version = '.'.join(str(a) for a in version_info)
 
     # Write the new version to the version.py file
     with open('version.py', 'w') as f:
-        f.write('__version__ = {}'.format(new_version))
+        f.write('__version__ = "{}"'.format(new_version))
 
     return new_version
 
@@ -21,8 +21,15 @@ def increment_version():
 # And then do `git tag ...`
 if sys.argv[-1] == 'tag':
     version = increment_version()
-    os.system("git tag -a %s -m 'version %s'" % (version, version))
-    os.system("git push --tags")
+
+    command = "git tag -a 'v%s' -m 'version %s'" % (version, version)
+    print(command)
+    os.system(command)
+
+    command = "git push --tags"
+    print(command)
+    os.system(command)
+
     sys.exit()
 
 
