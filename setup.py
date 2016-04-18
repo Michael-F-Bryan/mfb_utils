@@ -11,4 +11,11 @@ setup(
     author='Michael F Bryan',
     description='My utility scripts',
     ext_modules=cythonize('utils/math.pyx'),
+    install_requires=[
+        'cython',
+        'pytest',
+        'bs4',
+        'sphinx',
+        'sphinxcontrib-napoleon',
+        ],
 )

@@ -1134,13 +1134,14 @@ static PyObject *__pyx_f_5utils_4math__sieve_of_erosthenes(int __pyx_v_n) {
  * 
  * 
  * def sieve_of_erosthenes(n):             # <<<<<<<<<<<<<<
- *     if not isinstance(n, int):
- *         raise TypeError('n must be a positive integer')
+ *     """
+ *     A thin python wrapper function around _sieve_of_erosthenes() to do all
  */
 
 /* Python wrapper */
 static PyObject *__pyx_pw_5utils_4math_3sieve_of_erosthenes(PyObject *__pyx_self, PyObject *__pyx_v_n); /*proto*/
-static PyMethodDef __pyx_mdef_5utils_4math_3sieve_of_erosthenes = {"sieve_of_erosthenes", (PyCFunction)__pyx_pw_5utils_4math_3sieve_of_erosthenes, METH_O, 0};
+static char __pyx_doc_5utils_4math_2sieve_of_erosthenes[] = "\n    A thin python wrapper function around _sieve_of_erosthenes() to do all \n    type and value checking.\n    ";
+static PyMethodDef __pyx_mdef_5utils_4math_3sieve_of_erosthenes = {"sieve_of_erosthenes", (PyCFunction)__pyx_pw_5utils_4math_3sieve_of_erosthenes, METH_O, __pyx_doc_5utils_4math_2sieve_of_erosthenes};
 static PyObject *__pyx_pw_5utils_4math_3sieve_of_erosthenes(PyObject *__pyx_self, PyObject *__pyx_v_n) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -1162,9 +1163,9 @@ static PyObject *__pyx_pf_5utils_4math_2sieve_of_erosthenes(CYTHON_UNUSED PyObje
   int __pyx_t_5;
   __Pyx_RefNannySetupContext("sieve_of_erosthenes", 0);
 
-  /* "utils/math.pyx":33
- * 
- * def sieve_of_erosthenes(n):
+  /* "utils/math.pyx":37
+ *     type and value checking.
+ *     """
  *     if not isinstance(n, int):             # <<<<<<<<<<<<<<
  *         raise TypeError('n must be a positive integer')
  *     if n <= 0 or int(n) != n:
@@ -1173,67 +1174,67 @@ static PyObject *__pyx_pf_5utils_4math_2sieve_of_erosthenes(CYTHON_UNUSED PyObje
   __pyx_t_2 = ((!(__pyx_t_1 != 0)) != 0);
   if (__pyx_t_2) {
 
-    /* "utils/math.pyx":34
- * def sieve_of_erosthenes(n):
+    /* "utils/math.pyx":38
+ *     """
  *     if not isinstance(n, int):
  *         raise TypeError('n must be a positive integer')             # <<<<<<<<<<<<<<
  *     if n <= 0 or int(n) != n:
  *         raise ValueError('n must be a positive integer')
  */
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 34, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 38, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_Raise(__pyx_t_3, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __PYX_ERR(0, 34, __pyx_L1_error)
+    __PYX_ERR(0, 38, __pyx_L1_error)
 
-    /* "utils/math.pyx":33
- * 
- * def sieve_of_erosthenes(n):
+    /* "utils/math.pyx":37
+ *     type and value checking.
+ *     """
  *     if not isinstance(n, int):             # <<<<<<<<<<<<<<
  *         raise TypeError('n must be a positive integer')
  *     if n <= 0 or int(n) != n:
  */
   }
 
-  /* "utils/math.pyx":35
+  /* "utils/math.pyx":39
  *     if not isinstance(n, int):
  *         raise TypeError('n must be a positive integer')
  *     if n <= 0 or int(n) != n:             # <<<<<<<<<<<<<<
  *         raise ValueError('n must be a positive integer')
  * 
  */
-  __pyx_t_3 = PyObject_RichCompare(__pyx_v_n, __pyx_int_0, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(__pyx_v_n, __pyx_int_0, Py_LE); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (!__pyx_t_1) {
   } else {
     __pyx_t_2 = __pyx_t_1;
     goto __pyx_L5_bool_binop_done;
   }
-  __pyx_t_3 = __Pyx_PyNumber_Int(__pyx_v_n); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyNumber_Int(__pyx_v_n); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyObject_RichCompare(__pyx_t_3, __pyx_v_n, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_4 = PyObject_RichCompare(__pyx_t_3, __pyx_v_n, Py_NE); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 35, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 39, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_2 = __pyx_t_1;
   __pyx_L5_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "utils/math.pyx":36
+    /* "utils/math.pyx":40
  *         raise TypeError('n must be a positive integer')
  *     if n <= 0 or int(n) != n:
  *         raise ValueError('n must be a positive integer')             # <<<<<<<<<<<<<<
  * 
  *     return _sieve_of_erosthenes(n)
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 36, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__2, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 36, __pyx_L1_error)
+    __PYX_ERR(0, 40, __pyx_L1_error)
 
-    /* "utils/math.pyx":35
+    /* "utils/math.pyx":39
  *     if not isinstance(n, int):
  *         raise TypeError('n must be a positive integer')
  *     if n <= 0 or int(n) != n:             # <<<<<<<<<<<<<<
@@ -1242,15 +1243,15 @@ static PyObject *__pyx_pf_5utils_4math_2sieve_of_erosthenes(CYTHON_UNUSED PyObje
  */
   }
 
-  /* "utils/math.pyx":38
+  /* "utils/math.pyx":42
  *         raise ValueError('n must be a positive integer')
  * 
  *     return _sieve_of_erosthenes(n)             # <<<<<<<<<<<<<<
  * 
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_v_n); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 38, __pyx_L1_error)
-  __pyx_t_4 = __pyx_f_5utils_4math__sieve_of_erosthenes(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_v_n); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 42, __pyx_L1_error)
+  __pyx_t_4 = __pyx_f_5utils_4math__sieve_of_erosthenes(__pyx_t_5); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 42, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
@@ -1260,8 +1261,8 @@ static PyObject *__pyx_pf_5utils_4math_2sieve_of_erosthenes(CYTHON_UNUSED PyObje
  * 
  * 
  * def sieve_of_erosthenes(n):             # <<<<<<<<<<<<<<
- *     if not isinstance(n, int):
- *         raise TypeError('n must be a positive integer')
+ *     """
+ *     A thin python wrapper function around _sieve_of_erosthenes() to do all
  */
 
   /* function exit code */
@@ -1314,8 +1315,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 };
 static int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 22, __pyx_L1_error)
-  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(0, 34, __pyx_L1_error)
-  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(0, 38, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 40, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -1325,25 +1326,25 @@ static int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "utils/math.pyx":34
- * def sieve_of_erosthenes(n):
+  /* "utils/math.pyx":38
+ *     """
  *     if not isinstance(n, int):
  *         raise TypeError('n must be a positive integer')             # <<<<<<<<<<<<<<
  *     if n <= 0 or int(n) != n:
  *         raise ValueError('n must be a positive integer')
  */
-  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_n_must_be_a_positive_integer); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_s_n_must_be_a_positive_integer); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 38, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "utils/math.pyx":36
+  /* "utils/math.pyx":40
  *         raise TypeError('n must be a positive integer')
  *     if n <= 0 or int(n) != n:
  *         raise ValueError('n must be a positive integer')             # <<<<<<<<<<<<<<
  * 
  *     return _sieve_of_erosthenes(n)
  */
-  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_n_must_be_a_positive_integer); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_tuple__2 = PyTuple_Pack(1, __pyx_kp_s_n_must_be_a_positive_integer); if (unlikely(!__pyx_tuple__2)) __PYX_ERR(0, 40, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__2);
   __Pyx_GIVEREF(__pyx_tuple__2);
 
@@ -1351,8 +1352,8 @@ static int __Pyx_InitCachedConstants(void) {
  * 
  * 
  * def sieve_of_erosthenes(n):             # <<<<<<<<<<<<<<
- *     if not isinstance(n, int):
- *         raise TypeError('n must be a positive integer')
+ *     """
+ *     A thin python wrapper function around _sieve_of_erosthenes() to do all
  */
   __pyx_tuple__3 = PyTuple_Pack(1, __pyx_n_s_n); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
@@ -1469,8 +1470,8 @@ PyMODINIT_FUNC PyInit_math(void)
  * 
  * 
  * def sieve_of_erosthenes(n):             # <<<<<<<<<<<<<<
- *     if not isinstance(n, int):
- *         raise TypeError('n must be a positive integer')
+ *     """
+ *     A thin python wrapper function around _sieve_of_erosthenes() to do all
  */
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_5utils_4math_3sieve_of_erosthenes, NULL, __pyx_n_s_utils_math); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
