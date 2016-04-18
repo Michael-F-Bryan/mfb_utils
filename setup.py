@@ -2,7 +2,11 @@ from setuptools import find_packages, setup
 from Cython.Build import cythonize
 import os
 import sys
-from version import __version__
+
+
+def get_version():
+    with open('VERSION') as f:
+        return f.read().strip()
 
 
 def increment_version():
@@ -15,13 +19,13 @@ def increment_version():
     str
         The new version number
     """
-    version_info = [int(a) for a in __version__.split('.')]
+    version_info = [int(a) for a in get_version().split('.')]
     version_info[-1] += 1
     new_version = '.'.join(str(a) for a in version_info)
 
     # Write the new version to the version.py file
-    with open('version.py', 'w') as f:
-        f.write('__version__ = "{}"'.format(new_version))
+    with open('VERSION', 'w') as f:
+        f.write(new_version)
 
     return new_version
 
