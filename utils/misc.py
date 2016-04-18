@@ -43,21 +43,25 @@ class Hook:
     methods, and on some methods he will add a Hook decorator. Then the user 
     can create a subclass of this class and implement the hooks themselves.
 
+    The user is given access to the return value of the decorated function 
+    through the `self._hook_return_value` variable. The return value is None
+    if the hook is called before the decorated function.
+
     Example
     -------
-    Developer:
+    Developer::
 
-    class MyClass:
-        @Hook('on_do_stuff', arg1='something', arg2=7)
-        def do_stuff(self):
-            pass
+        class MyClass:
+            @Hook('on_do_stuff', arg1='something', arg2=7)
+            def do_stuff(self):
+                pass
 
-    User:
+    User::
     
-    class MyNewClass(MyClass):
-    def on_do_stuff(self, **kwargs):
-        # Do something useful
-        pass
+        class MyNewClass(MyClass):
+            def on_do_stuff(self, **kwargs):
+                # Do something useful
+                pass
 
     Parameters
     ----------
@@ -84,7 +88,7 @@ class Hook:
         def decorated(*args, **kwargs):
             if self.call_after:
                 ret = func(*args, **kwargs)
-                self.call_hook(func, args)
+                self.call_hook(func, args, return_value=ret)
             else:
                 self.call_hook(func, args)
                 ret = func(*args, **kwargs)
@@ -93,7 +97,7 @@ class Hook:
 
         return decorated
 
-    def call_hook(self, func, args):
+    def call_hook(self, func, args, return_value=None):
         """
         Get the "self" argument (i.e. the instance of a class that is implicitly
         passed to a method when you call something like "some_class.method()")
@@ -114,6 +118,7 @@ class Hook:
         hook = getattr(instance, self.hook_name, None)
 
         if hook:
+            instance._hook_return_value = return_value
             try:
                 hook(**self.hook_kwargs)
             except Exception:
@@ -122,20 +127,20 @@ class Hook:
     
 
 class Timed:
-    def __init__(self, output_stream=sys.stderr, decimals=3):
-        """
-        Time a function call and save it's duration (in seconds) to 
-        `function.duration`.
+    """
+    Time a function call and save it's duration (in seconds) to 
+    `function.duration`.
 
-        Parameters
-        ----------
-        output_stream: Stream-like object
-            A stream to write the timing message to, set to None to disable it
-            (default: stderr)
-        decimals: int
-            The number of decimal places to print the duration to in the output
-            stream
-        """
+    Parameters
+    ----------
+    output_stream: Stream-like object
+        A stream to write the timing message to, set to None to disable it
+        (default: stderr)
+    decimals: int
+        The number of decimal places to print the duration to in the output
+        stream
+    """
+    def __init__(self, output_stream=sys.stderr, decimals=3):
         if output_stream is None or hasattr(output_stream, 'write'):
             self.output_stream = output_stream
         else:
