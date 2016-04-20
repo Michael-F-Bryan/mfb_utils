@@ -1,0 +1,12 @@
+# .coveragerc file to control coverage.py
+[run]
+branch = True
+omit = 
+    ./tests/*
+    setup.py
+    tasks.py
+source = .
+
+[html]
+directory = coverage_html_report
+

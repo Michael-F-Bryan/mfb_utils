@@ -1,7 +1,12 @@
 from setuptools import find_packages, setup
-from Cython.Build import cythonize
 import os
 import sys
+
+try:
+    from Cython.Build import cythonize
+except ImportError:
+    print('Please install "cython" first')
+    sys.exit(1)
 
 
 def get_version():
@@ -48,7 +53,7 @@ if sys.argv[-1] == 'tag':
 
 setup(
     name='utils',
-    version=__version__,
+    version=get_version(),
     packages=find_packages(exclude=['tests', 'docs', 'scripts']),
     license='MIT',
     long_description=open('README.rst').read(),
@@ -61,5 +66,7 @@ setup(
         'bs4',
         'sphinx',
         'sphinxcontrib-napoleon',
+        'invoke',
+        'pytest-cov',
         ],
 )

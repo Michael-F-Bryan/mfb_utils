@@ -24,6 +24,13 @@ or, ::
 
     mkvirtualenv my_virtual_env
 
+Make sure `Cython` is installed (may require root privileges)::
+    pip install cython
+
 Then finally, install the package::
     python setup.py install
 
+Testing
+=======
+Testing is done using the py.test framework. Simply run `py.test` from the
+project's root directory to run all the tests for this package.
