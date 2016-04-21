@@ -68,5 +68,6 @@ setup(
         'sphinxcontrib-napoleon',
         'invoke',
         'pytest-cov',
+        'pylint',
         ],
 )
