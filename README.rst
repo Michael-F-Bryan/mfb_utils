@@ -2,6 +2,9 @@
 My Utils README
 ===============
 
+.. image:: https://travis-ci.org/Michael-F-Bryan/mfb_utils.svg?branch=master
+    :target: https://travis-ci.org/Michael-F-Bryan/mfb_utils
+
 Description
 ===========
 A bunch of commonly used functions, classes and decorators that I've bundled up
