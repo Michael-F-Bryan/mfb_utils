@@ -8,11 +8,9 @@ My Utils README
 
 .. Tag number
 .. image:: https://img.shields.io/github/tag/strongloop/express.svg?maxAge=2592000
- :target:
 
 .. License
 .. image:: https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000
- :target:
 
 Description
 ===========
