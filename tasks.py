@@ -54,4 +54,4 @@ def find_coverage_html():
 
 
 namespace = Collection(test, coverage, lint)
-namespace.configure({'rum.echo': True})
+namespace.configure({'run.echo': True})
