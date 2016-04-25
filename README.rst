@@ -7,10 +7,10 @@ My Utils README
     :target: https://travis-ci.org/Michael-F-Bryan/mfb_utils
 
 .. Tag number
-.. image:: https://img.shields.io/github/tag/strongloop/express.svg?maxAge=2592000
+.. image:: https://img.shields.io/github/tag/Michael-F-Bryan/mfb_utils.svg?maxAge=2592000
 
 .. License
-.. image:: https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000
+.. image:: https://img.shields.io/github/license/Michael-F-Bryan/mfb_utils.svg?maxAge=2592000
 
 Description
 ===========
