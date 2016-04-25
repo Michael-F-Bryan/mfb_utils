@@ -22,10 +22,7 @@ def increment_version():
     Returns
     -------
     str
-        The new version number
-    """
-    version_info = [int(a) for a in get_version().split('.')]
-    version_info[-1] += 1
+        The new version number """ version_info = [int(a) for a in get_version().split('.')] version_info[-1] += 1
     new_version = '.'.join(str(a) for a in version_info)
 
     # Write the new version to the version.py file

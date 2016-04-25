@@ -10,6 +10,7 @@ import inspect
 from bs4 import BeautifulSoup
 import logging
 import time
+import random
 
 
 # Constants
@@ -302,3 +303,6 @@ def humansize(nbytes, decimals=2):
     f = f.rstrip('0').rstrip('.')
     return '%s %s' % (f, _suffixes[i])
 
+
+def random_user_agent():
+    return random.choice(USER_AGENTS)
