@@ -14,44 +14,6 @@ def get_version():
         return f.read().strip()
 
 
-def increment_version():
-    """
-    Increment the minor version number and then write it to the version.py 
-    file. For the moment all patches are at version 0 because it isn't a very
-    big project.
-
-    Returns
-    -------
-    str
-        The new version number 
-    """ 
-    version_info = [int(a) for a in get_version().split('.')] 
-    version_info[1] += 1
-    new_version = '.'.join(str(a) for a in version_info)
-
-    # Write the new version to the version.py file
-    with open('VERSION', 'w') as f:
-        f.write(new_version)
-
-    return new_version
-
-
-# Add a `python setup.py tag` command that will increment the current version
-# And then do `git tag ...`
-if sys.argv[-1] == 'tag':
-    version = increment_version()
-
-    command = "git tag -a 'v%s' -m 'version %s'" % (version, version)
-    print(command)
-    os.system(command)
-
-    command = "git push --tags"
-    print(command)
-    os.system(command)
-
-    sys.exit()
-
-
 setup(
     name='utils',
     version=get_version(),
