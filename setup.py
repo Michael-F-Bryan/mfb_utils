@@ -6,6 +6,7 @@ try:
     from Cython.Build import cythonize
 except ImportError:
     print('Please install "cython" first')
+    sys.exit(1)
 
 
 def get_version():

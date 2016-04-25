@@ -4,6 +4,8 @@ python:
   - 3.4
   - 3.5
 
+before_install:
+    - pip install cython
 install: 
     - python setup.py install
 
