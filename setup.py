@@ -6,12 +6,21 @@ try:
     from Cython.Build import cythonize
 except ImportError:
     print('Please install "cython" first')
-    sys.exit(1)
 
 
 def get_version():
     with open('VERSION') as f:
         return f.read().strip()
+
+def cython_modules():
+    """
+    Collects and "cythonizes" all cython modules. If Cython isn't installed 
+    then skip.
+    """
+    try:
+        return cythonize('utils/math.pyx')
+    except NameError:
+        return []
 
 
 setup(
@@ -22,7 +31,7 @@ setup(
     long_description=open('README.rst').read(),
     author='Michael F Bryan',
     description='My utility scripts',
-    ext_modules=cythonize('utils/math.pyx'),
+    ext_modules=cython_modules(),
     install_requires=[
         'cython',
         'pytest',
