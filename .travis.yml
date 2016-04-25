@@ -3,13 +3,14 @@ python:
   - 3.3
   - 3.4
   - 3.5
-before_install:
-    - pip install cython
+
 install: 
     - python setup.py install
-script: py.test
+
+# Note that we skip the math module because it requires cython
+script: py.test --ignore tests/test_math.py 
+
 notifications:
   email:
-    recipients:
     on_success: change
     on_failure: always
