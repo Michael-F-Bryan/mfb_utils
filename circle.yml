@@ -7,3 +7,8 @@ dependencies:
     - pip install cython 
     - pip install lazy-object-proxy==1.2.0
     - pip install pytest
+test:
+  pre:
+    - python setup.py build_ext --inplace
+  override:
+    - py.test
