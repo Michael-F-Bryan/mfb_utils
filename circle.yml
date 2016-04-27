@@ -5,4 +5,5 @@ machine:
 dependencies:
   pre:
     - pip install cython 
+    - pip install lazy-object-proxy==1.2.0
     - pip install pytest
