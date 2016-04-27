@@ -4,4 +4,5 @@ machine:
     version: 3.5.0
 dependencies:
   pre:
-    - pip install cython
+    - pip install cython 
+    - pip install pytest
