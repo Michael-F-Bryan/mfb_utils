@@ -29,15 +29,19 @@ First make sure to clone the repo from github::
 
 (Optional) Next make a virtual environment with either virtualenv or
 virtualenvwrapper::
-    venv my_virtual_env
+
+    python -m venv my_virtual_env
+
 or, ::
 
     mkvirtualenv my_virtual_env
 
 Make sure `Cython` is installed (may require root privileges)::
+
     pip install cython
 
 Then finally, install the package::
+
     python setup.py install
 
 Testing

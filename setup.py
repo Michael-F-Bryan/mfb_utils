@@ -13,16 +13,6 @@ def get_version():
     with open('VERSION') as f:
         return f.read().strip()
 
-def cython_modules():
-    """
-    Collects and "cythonizes" all cython modules. If Cython isn't installed 
-    then skip.
-    """
-    try:
-        return cythonize('utils/math.pyx')
-    except NameError:
-        return []
-
 
 setup(
     name='utils',
@@ -32,7 +22,7 @@ setup(
     long_description=open('README.rst').read(),
     author='Michael F Bryan',
     description='My utility scripts',
-    ext_modules=cython_modules(),
+    ext_modules=cythonize('utils/math.pyx'),
     install_requires=[
         'cython',
         'pytest',
