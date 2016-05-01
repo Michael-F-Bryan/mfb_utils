@@ -25,12 +25,10 @@ setup(
     ext_modules=cythonize('utils/math.pyx'),
     install_requires=[
         'cython',
-        'pytest',
         'bs4',
         'sphinx',
         'sphinxcontrib-napoleon',
         'invoke',
-        'pytest-cov',
         'pylint',
         ],
 )

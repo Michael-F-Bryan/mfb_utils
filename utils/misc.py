@@ -11,6 +11,8 @@ from bs4 import BeautifulSoup
 import logging
 import time
 import random
+import os
+import errno
 
 
 # Constants
@@ -306,3 +308,13 @@ def humansize(nbytes, decimals=2):
 
 def random_user_agent():
     return random.choice(USER_AGENTS)
+    
+def mkdir(path):
+    try:
+        os.makedirs(path)
+        logger.debug('Made directory: {}'.format(path))
+    except OSError as e:
+        if e.errno == errno.EEXIST and os.path.isdir(path):
+            pass
+        else:
+            raise

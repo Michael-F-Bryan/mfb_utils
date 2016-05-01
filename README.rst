@@ -2,9 +2,9 @@
 My Utils README
 ===============
 
-.. Travis build status
-.. image:: https://travis-ci.org/Michael-F-Bryan/mfb_utils.svg?branch=master
-    :target: https://travis-ci.org/Michael-F-Bryan/mfb_utils
+.. Circle.ci build status
+.. image:: https://circleci.com/gh/Michael-F-Bryan/mfb_utils.svg?style=svg
+    :target: https://circleci.com/gh/Michael-F-Bryan/mfb_utils
 
 .. Tag number
 .. image:: https://img.shields.io/github/tag/Michael-F-Bryan/mfb_utils.svg?maxAge=2592000
