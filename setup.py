@@ -1,34 +1,23 @@
-from setuptools import find_packages, setup
-import os
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+    Setup file for utils.
+
+    This file was generated with PyScaffold 2.5.6, a tool that easily
+    puts up a scaffold for your new Python project. Learn more under:
+    http://pyscaffold.readthedocs.org/
+"""
+
 import sys
-
-try:
-    from Cython.Build import cythonize
-except ImportError:
-    print('Please install "cython" first')
-    sys.exit(1)
+from setuptools import setup
 
 
-def get_version():
-    with open('VERSION') as f:
-        return f.read().strip()
+def setup_package():
+    needs_sphinx = {'build_sphinx', 'upload_docs'}.intersection(sys.argv)
+    sphinx = ['sphinx'] if needs_sphinx else []
+    setup(setup_requires=['six', 'pyscaffold>=2.5a0,<2.6a0'] + sphinx,
+          use_pyscaffold=True)
 
 
-setup(
-    name='utils',
-    version=get_version(),
-    packages=find_packages(exclude=['tests', 'docs', 'scripts']),
-    license='MIT',
-    long_description=open('README.rst').read(),
-    author='Michael F Bryan',
-    description='My utility scripts',
-    ext_modules=cythonize('utils/math.pyx'),
-    install_requires=[
-        'cython',
-        'bs4',
-        'sphinx',
-        'sphinxcontrib-napoleon',
-        'invoke',
-        'pylint',
-        ],
-)
+if __name__ == "__main__":
+    setup_package()

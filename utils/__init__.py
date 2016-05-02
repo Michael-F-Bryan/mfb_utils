@@ -7,5 +7,9 @@ function before or after the wrapped function is called.
 A particular use case could be to give a framework developer the ability to 
 add hooks to their framework with minimal effort.
 """
+import pkg_resources
 
-from ._version import __version__
+try:
+    __version__ = pkg_resources.get_distribution(__name__).version
+except:
+    __version__ = 'unknown'
