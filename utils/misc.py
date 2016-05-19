@@ -202,6 +202,8 @@ def get_logger(name, log_file, log_level=None):
 
     if log_file == 'stdout':
         handler = logging.StreamHandler(sys.stdout)
+    elif log_file == 'stderr':
+        handler = logging.StreamHandler(sys.stderr)
     else:
         handler = logging.FileHandler(log_file)
 
