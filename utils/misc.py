@@ -320,3 +320,9 @@ def mkdir(path):
             pass
         else:
             raise
+
+def innerHTML(element):
+    """
+    Return the HTML contents of a BeautifulSoup tag.
+    """
+    return element.decode_contents(formatter="html")
