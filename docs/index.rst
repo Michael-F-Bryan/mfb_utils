@@ -31,10 +31,11 @@ Contents
 .. toctree::
    :maxdepth: 2
 
+   Readme <readme>
+   Module Reference <modules>
    License <license>
    Authors <authors>
    Changelog <changes>
-   Module Reference <api/modules>
 
 
 Indices and tables
