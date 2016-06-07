@@ -11,4 +11,4 @@ test:
   pre:
     - python setup.py build_ext --inplace
   override:
-    - py.test
+    - make tests
